@@ -31,6 +31,8 @@ return[
     "Ascend user" => "Sustatu erabiltzailea",
     "Degrade user" => "jaitzi erabiltzailea",
     "Delete user" => "Ezabatu erabiltzailea",
+    "Retrieve user" => "Erabiltzailea berreskuratu",
+    "Retrieve" => "Berreskuratu",
     "Delete account" => "Ezabatu kontua",
     "Modify account" => "Aldatu Kontua",
     "Modify" => "Aldatu",

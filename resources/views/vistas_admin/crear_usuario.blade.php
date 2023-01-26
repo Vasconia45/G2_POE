@@ -72,22 +72,20 @@
             </div>
         </div>
         <div id="pass2Div"></div>
+        @if(Auth()->user()->id == 1)
         <div class="row col-4 mt-2">
             <div class="text-start">
                 <label for="role" class="col-form-label text-md-end">@lang('messages.Role') :</label>
             </div>
             <div>
-                <select class="form-select" name="rol" id="rol">
-                    @if(Auth()->user()->id == 1)
+                <select class="form-select" name="rol" id="rol">                  
                     @foreach ($roles as $rol)
                     <option value="{{$rol->id}}">{{$rol->tipo}}</option>
-                    @endforeach
-                    @else
-                    <option value="{{ $rol->id }}">{{ $rol->tipo }}</option>
-                    @endif
+                    @endforeach                 
                 </select>
             </div>
         </div>
+        @endif
         <button type="submit" class="btn mt-2" style="background:#cdb46c;">
             @lang('messages.Create')
         </button>

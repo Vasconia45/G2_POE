@@ -180,18 +180,36 @@ class ControladorAdmin extends Controller
             'password2' => ['required', 'string', 'same:password'],
         ]);
         if($validation){
-            $user=new User();
-            $rol=Role::find($request->rol);
-            $user->nombre = $request->nombre;
-            $user->apellido = $request->apellido;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->vuelo_id = null;
-            $user->is_verified=1;
-            $user->role()->associate($rol)->save();
-            $pedido=new Pedido();
-            $pedido->total=0;
-            $pedido->usuario()->associate($user)->save();
+            if(Auth()->user()->id == 1){
+                $user=new User();
+                $rol=Role::find($request->rol);
+                $user->nombre = $request->nombre;
+                $user->apellido = $request->apellido;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->vuelo_id = null;
+                $user->is_verified=1;
+                $user->role()->associate($rol)->save();
+                $pedido=new Pedido();
+                $pedido->total=0;
+                $pedido->usuario()->associate($user)->save();
+            }
+            else{
+                $user=new User();
+                $user->nombre = $request->nombre;
+                $user->apellido = $request->apellido;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->vuelo_id = null;
+                $user->is_verified=1;
+                $rol=Role::find(2);
+                $user->role()->associate($rol)->save();
+                $user->save();
+                $pedido=new Pedido();
+                $pedido->total=0;
+                $pedido->usuario()->associate($user)->save();
+
+            }
             $usuarios = User::all();
             return redirect("/home/lista_usuarios")->with("usuarios",$usuarios);
         }
@@ -289,14 +307,8 @@ class ControladorAdmin extends Controller
     }
 
     public function mostrarCrearUsuario(){
-        if(Auth()->user()->id == 1){
-            $roles=Role::all();
-            return view("vistas_admin.crear_usuario")->with(['roles' => $roles]);
-        }
-        else{
-            $rol = Role::find(2);
-            return view("vistas_admin.crear_usuario")->with(['rol' => $rol]);
-        }
+        $roles=Role::all();
+        return view("vistas_admin.crear_usuario")->with(['roles' => $roles]);
     }
 
     public function mostrarCrearproducto(){
@@ -319,7 +331,14 @@ class ControladorAdmin extends Controller
     }
 
     public function mostrarRecuperar(){
-        $usuarios=User::onlyTrashed()->get();
+        if(Auth()->user()->id == 1){
+            $usuarios = User::onlyTrashed()->get();
+        }
+        else{
+            $usuarios = User::onlyTrashed()
+            ->where('role_id', 2)
+            ->get();
+        }
         return view('vistas_admin.recuperar_usuarios')->with("usuarios",$usuarios);
     }
 
@@ -332,6 +351,6 @@ class ControladorAdmin extends Controller
     public function borrar_del_todo($id){
         $usuario=User::onlyTrashed()->find($id);
         $usuario->forceDelete();
-        return redirect('/home/lista_usuarios');
+        return redirect()->route('admin_lista_usuarios_mostrar_recuperar');
     }
 }

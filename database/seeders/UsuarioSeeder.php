@@ -20,7 +20,7 @@ class UsuarioSeeder extends Seeder
         $user1->nombre = 'admin';
         $user1->apellido = 'admin';
         $user1->email = "admin@gmail.com";
-        $user1->password = Hash::make("admin11");
+        $user1->password = Hash::make("Admin11");
         $user1->role_id = 1;
         $user1->vuelo_id = null;
         $user1->is_verified = 1;

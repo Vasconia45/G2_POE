@@ -7,10 +7,12 @@
     @else
     <td class="inner-table">user</td>
     @endif
+    @if (Auth()->user()->id == 1)
     <form action="{{route('admin_lista_usuarios_ascender',[$usuario->id])}}" method="POST">
         @csrf
         @method('PUT')
-        <td class="inner-table"><button type="submit" class="btn btn-success"><i class="bi bi-graph-up-arrow"></i></button>
+        <td class="inner-table"><button type="submit" class="btn btn-success"><i
+                    class="bi bi-graph-up-arrow"></i></button>
         </td>
     </form>
     <form action="{{route('admin_lista_usuarios_degradar',[$usuario->id])}}" method="POST">
@@ -18,13 +20,16 @@
         @method('PUT')
         <td><button type="submit" class="btn btn-warning"><i class="bi bi-graph-down-arrow"></i></button></td>
     </form>
+    @endif
     <form action="{{route('admin_lista_usuarios_mostrar_modificar',[$usuario->id])}}">
         @csrf
-        <td class="inner-table"><button type="submit" class="btn btn-info"><i class="bi bi-pencil-fill"></i></button></td>
+        <td class="inner-table"><button type="submit" class="btn btn-info"><i class="bi bi-pencil-fill"></i></button>
+        </td>
     </form>
     <form action="{{route('admin_lista_usuarios_borrar',[$usuario->id])}}" method="POST">
         @csrf
         @method('DELETE')
-        <td class="inner-table"><button type="submit" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></button></td>
+        <td class="inner-table"><button type="submit" class="btn btn-danger"><i
+                    class="fa-sharp fa-solid fa-trash"></button></td>
     </form>
 </tr>

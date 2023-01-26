@@ -9,8 +9,10 @@
                 <th>@lang('messages.Last name')</th>
                 <th>@lang('messages.Email')</th>
                 <th>@lang('messages.Role')</th>
+                @if (Auth()->user()->id == 1)
                 <th>@lang('messages.Ascend')</th>
                 <th>@lang('messages.Degrade')</th>
+                @endif
                 <th>@lang('messages.Edit')</th>
                 <th>@lang('messages.Delete')</th>
             </thead>

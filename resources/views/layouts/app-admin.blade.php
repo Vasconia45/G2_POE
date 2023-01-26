@@ -17,6 +17,9 @@
                 href="{{ route('admin_mostar_crear_usuarios') }}"><i
                     class="bi bi-pencil-square me-2"></i>@lang('messages.Create user')</a>
             <a class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+                href="{{ route('admin_lista_usuarios_mostrar_recuperar') }}"><i 
+                class="bi bi-person-dash me-2"></i>@lang('messages.Retrieve user')</a>
+            <a class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
                 href="{{ route('admin_lista_productos') }}"><i
                     class="bi bi-list-task me-2"></i>@lang('messages.Products')</a>
             <a class="list-group-item list-group-item-action bg-transparent second-text fw-bold"

@@ -6,6 +6,8 @@ use App\Http\Controllers\ControladorProductos;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Marca;
 use App\Models\Categoria;
 

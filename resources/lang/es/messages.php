@@ -31,6 +31,8 @@ return[
     "Ascend user" => "Ascender usuario",
     "Degrade user" => "Degradar usuario",
     "Delete user" => "Borrar usuario",
+    "Retrieve user" => "Recuperar Usuario",
+    "Retrieve" => "Recuperar",
     "Delete account" => "Borrar cuenta",
     "Modify account" => "Modificar Cuenta",
     "Modify" => "Modificar",
