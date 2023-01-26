@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
+
 <body>
     @foreach (['danger','warning','success','info'] as $msg)
     @if (Session::has('alert-' . $msg))
@@ -63,7 +65,7 @@
                         </div>
                     </div>
                     <a href="{{ route('password.request') }}">@lang('messages.ForgotPassword')</a>
-                    <button type="submit">@lang('messages.log')</button>
+                    <button type="submit" name="loginBtn" id="loginBtn">@lang('messages.log')</button>
                 </form>
             </div>
             <!--Formulario de registro-->
@@ -135,7 +137,7 @@
                             @enderror
                         </div>
                     </div>
-                    <button type="submit">@lang('messages.RegisterBtn')</button>
+                    <button type="submit" name="regisBtn" id="regisBtn">@lang('messages.RegisterBtn')</button>
                 </form>
             </div>
         </div>
@@ -157,4 +159,5 @@
     <script src="{{ asset('js/login.js')}}"></script>
     <script src="{{ asset('js/password.js')}}"></script>
 </body>
+
 </html>

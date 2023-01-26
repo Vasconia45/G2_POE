@@ -27,7 +27,7 @@ a{
 a:hover{
     color:#cdb46c;
 }
-button:not(#resetBtn){
+button:not(#resetBtn, #alertBtn){
     color:#fff;
     background: #CDB46C;
     font-size: 12px;

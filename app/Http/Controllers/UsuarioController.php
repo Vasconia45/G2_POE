@@ -18,26 +18,36 @@ class UsuarioController extends Controller
         return redirect("/");
     }
     public function update($id,Request $request){
-        $this->validar($request);
         $user=User::find($id);
-        $user->nombre = $request->nombre;
-        $user->apellido = $request->apellido;
+        if($request->password == null){
+            $validation = $request->validate([
+                'nombre' => ['required', 'string'],
+                'apellido' => ['required', 'string'],
+            ]);
+            if($validation){
+                $user->nombre = $request->nombre;
+                $user->apellido = $request->apellido;
+                $user->save();
+            }
+        }
+        else{
+            $validation = $request->validate([
+                'nombre' => ['required', 'string'],
+                'apellido' => ['required', 'string'],
+                'password' => ['required', 'string'],
+                'password2' => ['required', 'string', 'same:password'],
+            ]);
+            if($validation){
+                $user->nombre = $request->nombre;
+                $user->apellido = $request->apellido;
+                $user->password = Hash::make($request->password);
+                $user->save();
+            }
+        }
         /*$img = $request->file('file')->store('public');
         $url = Storage::url($img);
         $user->imagen = $url;*/
-        $user->password = Hash::make($request->password);
-        $user->save();
         return redirect()->route('modificar.cuenta')->with(['usuario' => Auth::user()]);
-    }
-    public function validar(Request $request){
-        $validation = $request->validate([
-            'nombre' => ['required', 'string'],
-            'apellido' => ['required', 'string'],
-            /*'file' => ['required', 'image'],*/
-            'password' => ['required', 'string'],
-            'password2' => ['required', 'string', 'same:password'],
-        ]);
-        return $validation;
     }
     public function mostrarUpdate($id){
         $usuario = User::find($id);
