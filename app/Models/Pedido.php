@@ -12,7 +12,7 @@ class Pedido extends Model
     protected $fillable = [
         'id',
         'total',
-        'id_usuario'
+        'usuario_id'
     ];
 
     public function usuario(){
@@ -20,6 +20,6 @@ class Pedido extends Model
     }
 
     public function productos(){
-        return $this->belongsToMany('App\Models\Producto');
+        return $this->belongsToMany('App\Models\Producto','pedido_producto',"pedido_id","producto_id")->withPivot('cantidad');
     }
 }
