@@ -85,35 +85,90 @@ class ControladorAdmin extends Controller
 
     public function ascender_usuario($id){
         $usuario=User::find($id);
-        $usuario->id_rol=1;
+        $usuario->role_id=1;
         $usuario->save();
         return redirect("/home/lista_usuarios");
     }
 
     public function degradar_usuario($id){
         $usuario=User::find($id);
-        $usuario->id_rol=2;
+        $usuario->role_id=2;
         $usuario->save();
         return redirect("/home/lista_usuarios");
     }
 
     public function mostrarEditarUsuario($id){
         $usuario=User::find($id);
-        $roles=Role::all();
-        return view("vistas_admin.modificar_usuario", ["usuario" => $usuario , "roles" => $roles]);
+            return view("vistas_admin.modificar_usuario")->with(['usuario' => $usuario]);
     }
 
     public function editarUsuario($id,Request $request){
-        $user=User::find($id);
-        $rol=Role::find($request->rol);
-        $user->nombre = $request->nombre;
-        $user->apellido = $request->apellido;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->vuelo_id = null;
-        $user->role()->associate($rol)->save();
-        $usuarios = User::all();
-        return view("vistas_admin.lista_usuarios")->with("usuarios",$usuarios);
+        $user = User::find($id);
+        if($request->email == $user->email){
+            if($request->password == null){
+                $validation = $request->validate([
+                    'nombre' => ['required', 'string'],
+                    'apellido' => ['required', 'string'],
+                    'email' => ['required'],
+                ]);
+                if($validation){
+                    $user->nombre = $request->nombre;
+                    $user->apellido = $request->apellido;
+                    $user->email = $request->email;
+                    $user->save();
+                    return redirect()->route('admin_lista_usuarios');
+                }
+            }else{
+                $validation = $request->validate([
+                    'nombre' => ['required', 'string'],
+                    'apellido' => ['required', 'string'],
+                    'email' => ['required'],
+                    'password' => ['required', 'string'],
+                    'password2' => ['required', 'string', 'same:password'],
+                ]);
+                if($validation){
+                    $user->nombre = $request->nombre;
+                    $user->apellido = $request->apellido;
+                    $user->email = $request->email;
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+                    return redirect()->route('admin_lista_usuarios');
+                }
+            }
+        }
+        else{
+            if($request->password == null){
+                $validation = $request->validate([
+                    'nombre' => ['required', 'string'],
+                    'apellido' => ['required', 'string'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users' ,'regex:/^[a-zA-z0-9._-]+@\w+\.[com]+/'],
+                ]);
+                if($validation){
+                    $user->nombre = $request->nombre;
+                    $user->apellido = $request->apellido;
+                    $user->email = $request->email;
+                    $user->save();
+                    return redirect()->route('admin_lista_usuarios');
+                }
+            }
+            else{
+                $validation = $request->validate([
+                    'nombre' => ['required', 'string'],
+                    'apellido' => ['required', 'string'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users' ,'regex:/^[a-zA-z0-9._-]+@\w+\.[com]+/'],
+                    'password' => ['required', 'string'],
+                    'password2' => ['required', 'string', 'same:password'],
+                ]);
+                if($validation){
+                    $user->nombre = $request->nombre;
+                    $user->apellido = $request->apellido;
+                    $user->email = $request->email;
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+                    return redirect()->route('admin_lista_usuarios');
+                }
+            }
+        }
     }
 
     public function crear_usuario(Request $request){
@@ -147,7 +202,7 @@ class ControladorAdmin extends Controller
             'nombre' => ['required', 'string'],
             'fecha_cad' => ['required'],
             'precio' => ['required'],
-            'description' => ['required', 'string'],
+            'descripcion' => ['required', 'string'],
             'stock' => ['required'],
             'calorias' => ['required'],
             'peso' => ['required'],
