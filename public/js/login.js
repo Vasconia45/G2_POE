@@ -1,15 +1,117 @@
 $(document).ready(inicio);
+
 function inicio() {
     let signInButton = $('#signIn');
     let signUpButton = $('#signUp');
+    let registerBtn = $('#regisBtn');
     signUpButton.on('click', search);
     signInButton.on('click', search2);
+    registerBtn.on('click', validateRegister);
 }
-function search(){
+
+function search() {
     let main = $('#main');
     main.addClass("right-panel-active");
 }
-function search2(){
+
+function search2() {
     let main = $('#main');
     main.removeClass("right-panel-active");
+}
+
+function validateRegister(e) {
+    let name = $('#inputNombre').val();
+    let lastname = $('#inputApell').val();
+    let email = $('#regEmail').val();
+    let password = $('#registerPass').val();
+    let password2 = $('#registerPass2').val();
+    if ((validateName(name)) ||
+        (validateLastname(lastname)) ||
+        (validateEmail(email)) ||
+        (validatePassword(password)) ||
+        (validatePassword2(password2))) {
+        e.preventDefault();
+    }
+}
+
+function validateName(name) {
+    let div = $('#nomDiv');
+    div.html("");
+    if (name == "") {
+        let span = $("<span></span>");
+        span.attr("role", "alert");
+        let strong = $("<strong>The name field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    return false;
+}
+
+function validateLastname(lastname) {
+    let div = $('#appDiv');
+    div.html("");
+    if (lastname == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The lastname field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    return false;
+}
+
+function validateEmail(email) {
+    let div = $('#emailDiv');
+    //let correctEmail = new RegExp("/^[a-zA-z0-9._-]+@\w+\.[com]+/g");
+    div.html("");
+    if (email == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The email file is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    } else {
+        alert(email.val().indexOf('@', 0) == -1);
+        if (email.val().indexOf('@', 0) == -1 && email.val().last('.com', 0) == -1) {
+            let span = $("<span></span>");
+            let strong = $("<strong>The email format is incorrect.</strong>");
+            strong.css("color", "red");
+            span.append(strong);
+            div.html(span);
+            return true
+        }
+    }
+    return false;
+}
+
+function validatePassword(password) {
+    let div = $('#pass1Div');
+    div.html("");
+    if (password == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The password field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    return false;
+}
+
+function validatePassword2(password2) {
+    let div = $('#pass2Div');
+    div.html("");
+    if (password2 == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The password2 field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    return false;
 }

@@ -83,23 +83,32 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
-        $user = new User();
-        $user->nombre = $request->nombre;
-        $user->apellido = $request->apellido;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $rol=Role::find(2);
-        $user->role()->associate($rol);
-        $user->verification_code = Str::random(6);
-        $user->save();
-        $pedido=new Pedido();
-        $pedido->total=0;
-        $pedido->usuario()->associate($user)->save();
-        if($user != null){
-            MailController::sendSignUpEmail($user->nombre,$user->email,$user->verification_code);
-            return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check your email for verification link'));
+        $validation = $request->validate([
+            'nombre' => ['required', 'string'],
+            'apellido' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^[a-zA-z0-9._-]+@\w+\.[com]+/'],
+            'password' => ['required', 'string'],
+            'password2' => ['required', 'string', 'same:password'],
+        ]);
+        if($validation){
+            $user = new User();
+            $user->nombre = $request->nombre;
+            $user->apellido = $request->apellido;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $rol=Role::find(2);
+            $user->role()->associate($rol);
+            $user->verification_code = Str::random(6);
+            $user->save();
+            $pedido=new Pedido();
+            $pedido->total=0;
+            $pedido->usuario()->associate($user)->save();
+            if($user != null){
+                MailController::sendSignUpEmail($user->nombre,$user->email,$user->verification_code);
+                return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check your email for verification link'));
+            }
+            return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong'));
         }
-        return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong'));
     }
 
     public function verifyUser(){

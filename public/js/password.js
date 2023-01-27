@@ -2,18 +2,12 @@ $(document).ready(inicio);
 function inicio(){
     let  inputPassword = $("#registerPass");
     let formRegister = $("#formularioRegister");
-    let formLogin = $("#formularioLogin");
     let ojoPassword = $('.ojoPassword');
     inputPassword.on("keyup", check);
-    formLogin.submit(login);
     formRegister.submit(register);
     ojoPassword.on('click', ojoChange);
 
 }
-
-function login(){
-}
-
 function register(){
         if ($("#registerPass").val().length >= 1) {
             $("#pass1Div").text("");

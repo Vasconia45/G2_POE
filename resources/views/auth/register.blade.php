@@ -84,34 +84,22 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <input type="text" class="@error('nombre') is-invalid @enderror" name="nombre"
-                                placeholder="@lang('messages.Name')" value="{{ old('nombre') }}">
-                            @error('nombre')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+                            <input type="text" name="nombre"
+                                placeholder="@lang('messages.Name')" value="{{ old('nombre') }}" id="inputNombre">
+                                <div id="nomDiv"></div>
                         </div>
                         <div class="mt-2">
-                            <input type="text" class="@error('apellido') is-invalid @enderror" name="apellido"
-                                placeholder="@lang('messages.Last name')" value="{{ old('apellido') }}">
-                            @error('apellido')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+                            <input type="text" name="apellido"
+                                placeholder="@lang('messages.Last name')" value="{{ old('apellido') }}" id="inputApell">
+                                <div id="appDiv"></div>
                         </div>
                         <div class="mt-2">
-                            <input type="email" class="@error('email') is-invalid @enderror" name="email"
+                            <input type="text" name="email"
                                 placeholder="@lang('messages.Email')" value="{{ old('email')}}" id="regEmail">
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+                                <div id="emailDiv"></div>
                         </div>
                         <div class="mt-2 position-relative">
-                            <input type="password" class="@error('password') is-invalid @enderror" name="password"
+                            <input type="password" name="password"
                                 placeholder="@lang('messages.Password')" id="registerPass">
                             <div id="pass1Div"></div>
                             <div>
@@ -119,22 +107,12 @@
                             </div>
                             <span id="passstrength"></span>
                             <span class="bi bi-eye-fill ojoPassword"></span>
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
                         </div>
                         <div class="mt-2 position-relative">
-                            <input type="password" class="@error('password2') is-invalid @enderror" name="password2"
+                            <input type="password" name="password2"
                                 placeholder="@lang('messages.RepeatPassword')" id="registerPass2">
                             <div id="pass2Div"></div>
                             <span class="bi bi-eye-fill ojoPassword"></span>
-                            @error('password2')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
                         </div>
                     </div>
                     <button type="submit" name="regisBtn" id="regisBtn">@lang('messages.RegisterBtn')</button>
