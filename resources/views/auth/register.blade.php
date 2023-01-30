@@ -94,22 +94,22 @@
                                 <div id="appDiv"></div>
                         </div>
                         <div class="mt-2">
-                            <input type="text" name="email"
-                                placeholder="@lang('messages.Email')" value="{{ old('email')}}" id="regEmail">
+                            <input type="text" name="email2"
+                                placeholder="@lang('messages.Email')" value="{{ old('email2')}}" id="regEmail">
                                 <div id="emailDiv"></div>
-                        </div>
-                        <div class="mt-2 position-relative">
-                            <input type="password" name="password"
+                            </div>
+                            <div class="mt-2 position-relative">
+                            <input type="password" name="password2"
                                 placeholder="@lang('messages.Password')" id="registerPass">
-                            <div id="pass1Div"></div>
                             <div>
                                 <div id="progress-bar"></div>
                             </div>
                             <span id="passstrength"></span>
                             <span class="bi bi-eye-fill ojoPassword"></span>
+                            <div id="pass1Div"></div>
                         </div>
                         <div class="mt-2 position-relative">
-                            <input type="password" name="password2"
+                            <input type="password" name="password3"
                                 placeholder="@lang('messages.RepeatPassword')" id="registerPass2">
                             <div id="pass2Div"></div>
                             <span class="bi bi-eye-fill ojoPassword"></span>

@@ -86,15 +86,21 @@ class RegisterController extends Controller
         $validation = $request->validate([
             'nombre' => ['required', 'string'],
             'apellido' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^[a-zA-z0-9._-]+@\w+\.[com]+/'],
-            'password' => ['required', 'string'],
-            'password2' => ['required', 'string', 'same:password'],
+            'email2' => ['required', 'string', 'email', 'max:255', 'regex:/^[a-zA-z0-9._-]+@\w+\.[com]+/'],
+            'password2' => ['required', 'string'],
+            'password3' => ['required', 'string', 'same:password2'],
         ]);
         if($validation){
-            $user = new User();
-            $user->nombre = $request->nombre;
+            $us = User::all();
+        foreach($us as $u){
+            if($request->email2 == $u->email){
+                return view('welcome');
+            }
+        }
+            /*$user = new User();
+            $user->nombre = $request->nombre2;
             $user->apellido = $request->apellido;
-            $user->email = $request->email;
+            $user->email = $request->email2;
             $user->password = Hash::make($request->password);
             $rol=Role::find(2);
             $user->role()->associate($rol);
@@ -107,7 +113,7 @@ class RegisterController extends Controller
                 MailController::sendSignUpEmail($user->nombre,$user->email,$user->verification_code);
                 return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check your email for verification link'));
             }
-            return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong'));
+            return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong'));*/
         }
     }
 

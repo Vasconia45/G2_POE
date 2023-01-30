@@ -30,7 +30,7 @@ function validateRegister(e) {
         (validateEmail(email)) ||
         (validatePassword(password)) ||
         (validatePassword2(password2))) {
-        e.preventDefault();
+            e.preventDefault();
     }
 }
 
@@ -65,7 +65,6 @@ function validateLastname(lastname) {
 
 function validateEmail(email) {
     let div = $('#emailDiv');
-    //let correctEmail = new RegExp("/^[a-zA-z0-9._-]+@\w+\.[com]+/g");
     div.html("");
     if (email == "") {
         let span = $("<span></span>");
@@ -74,16 +73,14 @@ function validateEmail(email) {
         span.append(strong);
         div.html(span);
         return true;
-    } else {
-        alert(email.val().indexOf('@', 0) == -1);
-        if (email.val().indexOf('@', 0) == -1 && email.val().last('.com', 0) == -1) {
-            let span = $("<span></span>");
-            let strong = $("<strong>The email format is incorrect.</strong>");
-            strong.css("color", "red");
-            span.append(strong);
-            div.html(span);
-            return true
-        }
+    }
+    else if(email.indexOf('@gmail.com', 0) == -1){
+        let span = $("<span></span>");
+        let strong = $("<strong>You need a valid email address. Has to be @gmail.com.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
     }
     return false;
 }
@@ -104,10 +101,19 @@ function validatePassword(password) {
 
 function validatePassword2(password2) {
     let div = $('#pass2Div');
+    let password = $('#inputNombre').val();
     div.html("");
     if (password2 == "") {
         let span = $("<span></span>");
         let strong = $("<strong>The password2 field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    else if(password2 != password){
+        let span = $("<span></span>");
+        let strong = $("<strong>The password2 and the password are not equal.</strong>");
         strong.css("color", "red");
         span.append(strong);
         div.html(span);
