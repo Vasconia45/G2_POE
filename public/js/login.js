@@ -6,7 +6,7 @@ function inicio() {
     let registerBtn = $('#regisBtn');
     signUpButton.on('click', search);
     signInButton.on('click', search2);
-    registerBtn.on('click', validateRegister);
+    registerBtn.on('submit', validateRegister);
 }
 
 function search() {
@@ -25,12 +25,24 @@ function validateRegister(e) {
     let email = $('#regEmail').val();
     let password = $('#registerPass').val();
     let password2 = $('#registerPass2').val();
-    if ((validateName(name)) ||
+    /*if ((validateName(name)) ||
         (validateLastname(lastname)) ||
         (validateEmail(email)) ||
         (validatePassword(password)) ||
         (validatePassword2(password2))) {
             e.preventDefault();
+    }*/
+    if(validateName(name)){
+        e.preventDefault();
+        if(validateLastname(lastname)){
+            if(validateEmail(email)){
+                if(validatePassword(password)){
+                    if(validatePassword2(password2)){
+                        
+                    }
+                }
+            }
+        }
     }
 }
 

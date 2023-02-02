@@ -38,7 +38,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::controller(ControladorAdmin::class)->group(function(){
-    Route::get('/home/lista_usuarios', 'mostrarUsuarios')->name('admin_lista_usuarios');
+    Route::get('/home/lista_usuarios', 'mostrarUsuarios')->name('admin_lista_usuarios')->middleware('admin');
 
     Route::delete('/home/lista_usuarios/{id}', 'borrar_usuario')->name('admin_lista_usuarios_borrar');
 
@@ -46,49 +46,49 @@ Route::controller(ControladorAdmin::class)->group(function(){
 
     Route::put('/home/lista_usuarios/degradar/{id}', 'degradar_usuario')->name('admin_lista_usuarios_degradar');
 
-    Route::get('/home/lista_usuarios/modificar/{id}' , 'mostrarEditarUsuario')->name('admin_lista_usuarios_mostrar_modificar');
+    Route::get('/home/lista_usuarios/modificar/{id}' , 'mostrarEditarUsuario')->name('admin_lista_usuarios_mostrar_modificar')->middleware('admin');
 
     Route::post('/home/lista_usuarios/modificar/{id}' , 'editarUsuario')->name('admin_lista_usuarios_modificar');
 
-    Route::get('/home/lista_usuarios/recuperar' , 'mostrarRecuperar')->name('admin_lista_usuarios_mostrar_recuperar');
+    Route::get('/home/lista_usuarios/recuperar' , 'mostrarRecuperar')->name('admin_lista_usuarios_mostrar_recuperar')->middleware('admin');
 
     Route::post('/home/lista_usuarios/recuperar/{id}' , 'recuperar')->name('admin_lista_usuarios_recuperar');
 
     Route::post('/home/lista_usuarios/recuperar/eliminar/{id}' , 'borrar_del_todo')->name('admin_lista_usuarios_borrar_del_todo');
 
-    Route::get('/home/crear_usuarios', 'mostrarCrearUsuario')->name('admin_mostar_crear_usuarios');
+    Route::get('/home/crear_usuarios', 'mostrarCrearUsuario')->name('admin_mostar_crear_usuarios')->middleware('admin');
 
     Route::post('/home/crear_usuarios', 'crear_usuario')->name('Admin_crear_usuario');
 
-    Route::get('/home/crear_productos', 'mostrarCrearProducto')->name('admin_mostar_crear_productos');
+    Route::get('/home/crear_productos', 'mostrarCrearProducto')->name('admin_mostar_crear_productos')->middleware('admin');
 
     Route::post('/home/crear_productos', 'crear_producto')->name('Admin_crear_producto');
 
-    Route::get('/home/lista_productos', 'mostrarProductos')->name('admin_lista_productos');
+    Route::get('/home/lista_productos', 'mostrarProductos')->name('admin_lista_productos')->middleware('admin');
 
     Route::delete('/home/lista_productos/{id}', 'borrar_producto')->name('admin_lista_productos_borrar');
 
-    Route::get('/home/crear_categorias', 'mostrarCrearCategoria')->name('admin_mostar_crear_categorias');
+    Route::get('/home/crear_categorias', 'mostrarCrearCategoria')->name('admin_mostar_crear_categorias')->middleware('admin');
 
     Route::post('/home/crear_categorias', 'crear_categoria')->name('Admin_crear_categoria');
 
-    Route::get('/home/lista_categorias', 'mostrarCategorias')->name('admin_lista_categorias');
+    Route::get('/home/lista_categorias', 'mostrarCategorias')->name('admin_lista_categorias')->middleware('admmin');
 
     Route::delete('/home/lista_categorias/{id}', 'borrar_categoria')->name('admin_lista_categorias_borrar');
 
-    Route::get('/home/crear_marcas', 'mostrarCrearMarca')->name('admin_mostar_crear_marcas');
+    Route::get('/home/crear_marcas', 'mostrarCrearMarca')->name('admin_mostar_crear_marcas')->middleware('admin');
 
     Route::post('/home/crear_marcas', 'crear_marca')->name('Admin_crear_marca');
 
-    Route::get('/home/lista_marcas', 'mostrarMarcas')->name('admin_lista_marcas');
+    Route::get('/home/lista_marcas', 'mostrarMarcas')->name('admin_lista_marcas')->middleware('admin');
 
     Route::delete('/home/lista_marcas/{id}', 'borrar_marca')->name('admin_lista_marcas_borrar');
 
-    Route::get('/home/crear_vuelos', 'mostrarCrearVuelo')->name('admin_mostar_crear_vuelos');
+    Route::get('/home/crear_vuelos', 'mostrarCrearVuelo')->name('admin_mostar_crear_vuelos')->middleware('admin');
 
     Route::post('/home/crear_vuelos', 'crear_vuelo')->name('Admin_crear_vuelo');
 
-    Route::get('/home/lista_vuelos', 'mostrarVuelos')->name('admin_lista_vuelos');
+    Route::get('/home/lista_vuelos', 'mostrarVuelos')->name('admin_lista_vuelos')->middleware('admin');
 
     Route::delete('/home/lista_vuelos/{id}', 'borrar_vuelo')->name('admin_lista_vuelos_borrar');
 });

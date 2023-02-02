@@ -84,23 +84,28 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <input type="text" name="nombre"
-                                placeholder="@lang('messages.Name')" value="{{ old('nombre') }}" id="inputNombre">
-                                <div id="nomDiv"></div>
+                            <input type="text" name="nombre" class="@error('nombre') is-invalid @enderror"placeholder="@lang('messages.Name')"
+                                value="{{ old('nombre') }}" id="inputNombre">
+                            <div id="nomDiv"></div>
+                            @error('nombre')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="mt-2">
-                            <input type="text" name="apellido"
-                                placeholder="@lang('messages.Last name')" value="{{ old('apellido') }}" id="inputApell">
-                                <div id="appDiv"></div>
+                            <input type="text" name="apellido" placeholder="@lang('messages.Last name')"
+                                value="{{ old('apellido') }}" id="inputApell">
+                            <div id="appDiv"></div>
                         </div>
                         <div class="mt-2">
-                            <input type="text" name="email2"
-                                placeholder="@lang('messages.Email')" value="{{ old('email2')}}" id="regEmail">
-                                <div id="emailDiv"></div>
-                            </div>
-                            <div class="mt-2 position-relative">
-                            <input type="password" name="password2"
-                                placeholder="@lang('messages.Password')" id="registerPass">
+                            <input type="text" name="email2" placeholder="@lang('messages.Email')"
+                                value="{{ old('email2')}}" id="regEmail">
+                            <div id="emailDiv"></div>
+                        </div>
+                        <div class="mt-2 position-relative">
+                            <input type="password" name="password2" placeholder="@lang('messages.Password')"
+                                id="registerPass">
                             <div>
                                 <div id="progress-bar"></div>
                             </div>
@@ -109,8 +114,8 @@
                             <div id="pass1Div"></div>
                         </div>
                         <div class="mt-2 position-relative">
-                            <input type="password" name="password3"
-                                placeholder="@lang('messages.RepeatPassword')" id="registerPass2">
+                            <input type="password" name="password3" placeholder="@lang('messages.RepeatPassword')"
+                                id="registerPass2">
                             <div id="pass2Div"></div>
                             <span class="bi bi-eye-fill ojoPassword"></span>
                         </div>

@@ -307,8 +307,8 @@ class ControladorAdmin extends Controller
     }
 
     public function mostrarCrearUsuario(){
-        $roles=Role::all();
-        return view("vistas_admin.crear_usuario")->with(['roles' => $roles]);
+            $roles=Role::all();
+            return view("vistas_admin.crear_usuario")->with(['roles' => $roles]);
     }
 
     public function mostrarCrearproducto(){
