@@ -91,17 +91,23 @@ class RegisterController extends Controller
             'password3' => ['required', 'string', 'same:password2'],
         ]);
         if($validation){
-            $us = User::all();
-        foreach($us as $u){
-            if($request->email2 == $u->email){
-                return view('welcome');
+            $users = User::all();
+            $usersTrashed = User::onlyTrashed()->get();
+            foreach($users as $u){
+                if($u->email == $request->email2){
+                    return redirect()->back()->with(session()->flash('alert-danger', 'The email allready exists in our records.'));
+                }
             }
-        }
-            /*$user = new User();
-            $user->nombre = $request->nombre2;
+            foreach($usersTrashed as $ut){
+                if($ut->email == $request->email2){
+                    return redirect()->back()->with(session()->flash('alert-danger', 'The email allready exists in our records.'));
+                }
+            }
+            $user = new User();
+            $user->nombre = $request->nombre;
             $user->apellido = $request->apellido;
             $user->email = $request->email2;
-            $user->password = Hash::make($request->password);
+            $user->password = Hash::make($request->password2);
             $rol=Role::find(2);
             $user->role()->associate($rol);
             $user->verification_code = Str::random(6);
@@ -113,7 +119,9 @@ class RegisterController extends Controller
                 MailController::sendSignUpEmail($user->nombre,$user->email,$user->verification_code);
                 return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check your email for verification link'));
             }
-            return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong'));*/
+            return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong'));
+        }else{
+            return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong'));
         }
     }
 

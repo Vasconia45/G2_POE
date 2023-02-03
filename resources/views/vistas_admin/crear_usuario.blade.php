@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('styles')
 <script src="{{ asset('js/password.js')}}"></script>
+<script src="{{ asset('js/adminValidation.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('css/userDatos.css') }}">
 @endsection
 @section('content')
@@ -86,7 +87,7 @@
             </div>
         </div>
         @endif
-        <button type="submit" class="btn mt-2" style="background:#cdb46c;">
+        <button type="submit" class="btn mt-2" style="background:#cdb46c;" id="userCreateBtn">
             @lang('messages.Create')
         </button>
     </form>

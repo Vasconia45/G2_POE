@@ -84,14 +84,9 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <input type="text" name="nombre" class="@error('nombre') is-invalid @enderror"placeholder="@lang('messages.Name')"
+                            <input type="text" name="nombre" placeholder="@lang('messages.Name')"
                                 value="{{ old('nombre') }}" id="inputNombre">
                             <div id="nomDiv"></div>
-                            @error('nombre')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
                         </div>
                         <div class="mt-2">
                             <input type="text" name="apellido" placeholder="@lang('messages.Last name')"
