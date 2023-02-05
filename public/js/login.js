@@ -35,17 +35,6 @@ function validateRegister(e) {
     else{
         e.preventDefault();
     }
-
-    /*if ((validateName(name)) ||
-        (validateLastname(lastname)) ||
-        (validateEmail(email)) ||
-        (validatePassword(password)) ||
-        (validatePassword2(password2))) {
-            e.preventDefault();
-    }
-    else{
-        alert("sds");
-    }*/
 }
 
 function validateName(name) {
@@ -79,6 +68,7 @@ function validateLastname(lastname) {
 function validateEmail(email) {
     let div = $('#emailDiv');
     div.html("");
+    let last = email.split('.').slice(-1);
     if (email == "") {
         let span = $("<span></span>");
         let strong = $("<strong>The email file is required.</strong>");
@@ -87,7 +77,7 @@ function validateEmail(email) {
         div.html(span);
         return true;
     }
-    else if(email.indexOf('@', 0) == -1 && email.indexOf('.com', 0) == -1){
+    else if(email.indexOf('@', 0) == -1 || last != 'com'){
         let span = $("<span></span>");
         let strong = $("<strong>You need a valid email address.</strong>");
         strong.css("color", "red");

@@ -87,7 +87,7 @@
             </div>
         </div>
         @endif
-        <button type="submit" class="btn mt-2" style="background:#cdb46c;" id="userCreateBtn">
+        <button type="submit" class="btn mt-2 adminValidation" name="userBtn" style="background:#cdb46c;">
             @lang('messages.Create')
         </button>
     </form>

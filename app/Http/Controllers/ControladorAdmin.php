@@ -182,13 +182,13 @@ class ControladorAdmin extends Controller
         if($validation){
             if(Auth()->user()->id == 1){
                 $user=new User();
-                $rol=Role::find($request->rol);
                 $user->nombre = $request->nombre;
                 $user->apellido = $request->apellido;
                 $user->email = $request->email;
                 $user->password = Hash::make($request->password);
                 $user->vuelo_id = null;
                 $user->is_verified=1;
+                $rol=Role::find($request->rol);
                 $user->role()->associate($rol)->save();
                 $pedido=new Pedido();
                 $pedido->total=0;

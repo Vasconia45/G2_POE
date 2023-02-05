@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('styles')
 <script src="{{ asset('js/apivuelo.js')}}"></script>
+<script src="{{ asset('js/adminValidation.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('css/userDatos.css') }}">
 @endsection
 @section('content')
@@ -146,7 +147,7 @@
                 @enderror
             </div>
         </div>
-        <button type="submit" class="btn mt-2" style="background:#cdb46c;">
+        <button type="submit" class="btn mt-2 adminValidation" name="vueloBtn" style="background:#cdb46c;">
             @lang('messages.Create')
         </button>
     </form>

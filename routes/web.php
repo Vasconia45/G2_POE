@@ -72,7 +72,7 @@ Route::controller(ControladorAdmin::class)->group(function(){
 
     Route::post('/home/crear_categorias', 'crear_categoria')->name('Admin_crear_categoria');
 
-    Route::get('/home/lista_categorias', 'mostrarCategorias')->name('admin_lista_categorias')->middleware('admmin');
+    Route::get('/home/lista_categorias', 'mostrarCategorias')->name('admin_lista_categorias')->middleware('admin');
 
     Route::delete('/home/lista_categorias/{id}', 'borrar_categoria')->name('admin_lista_categorias_borrar');
 

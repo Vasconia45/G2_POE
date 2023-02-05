@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('styles')
+<script src="{{ asset('js/adminValidation.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('css/userDatos.css') }}">
 @endsection
 @section('content')
@@ -10,7 +11,7 @@
         @csrf
         <div class="row col-7">
             <div class="form-floating mt-2">
-                <input type="text" class="@error('nombre') is-invalid @enderror" name="nombre" placeholder="@lang('messages.Name')" value="{{ old('nombre') }}" autofocus>
+                <input id="nombre" type="text" class="@error('nombre') is-invalid @enderror" name="nombre" placeholder="@lang('messages.Name')" value="{{ old('nombre') }}" autofocus>
                 @error('nombre')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -18,7 +19,7 @@
                 @enderror
             </div>
         </div>
-        <button type="submit" class="btn mt-2" style="background:#cdb46c;">
+        <button type="submit" class="btn mt-2 adminValidation" name="marcaBtn" style="background:#cdb46c;">
             @lang('messages.Create')
         </button>
     </form>

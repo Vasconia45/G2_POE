@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('styles')
+<script src="{{ asset('js/adminValidation.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('css/userDatos.css') }}">
 @endsection
 @section('content')
@@ -175,7 +176,7 @@
                 </select>
             </div>
         </div>
-        <button type="submit" class="btn mt-2" style="background:#cdb46c;">
+        <button type="submit" class="btn mt-2 adminValidation" name="productoBtn" style="background:#cdb46c;">
             @lang('messages.Create')
         </button>
     </form>
