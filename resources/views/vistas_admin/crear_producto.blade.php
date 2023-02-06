@@ -45,7 +45,7 @@
         <div class="row col-8">
             <div class="form-floating mt-2">
                 <input id="descripcion" class="@error('description') is-invalid @enderror" type="text"
-                    name="descripcion" placeholder="@lang('messages.Description')" value="{{ old('description') }}">
+                    name="description" placeholder="@lang('messages.Description')" value="{{ old('description') }}">
                 @error('description')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -154,10 +154,11 @@
         </div>
         <div class="row col-4 mt-2">
             <div class="text-start">
-                <label for="role" class="col-form-label text-md-end">@lang('messages.Categories') :</label>
+                <label for="categoria" class="col-form-label text-md-end">@lang('messages.Categories') :</label>
             </div>
             <div>
                 <select class="form-select" name="categoria" id="categoria">
+                    <option>Seleccione una categoria:</option>
                     @foreach ($categorias as $categoria)
                     <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                     @endforeach
@@ -166,7 +167,7 @@
         </div>
         <div class="row col-4 mt-2">
             <div class="text-start">
-                <label for="role" class="col-form-label text-md-end">@lang('messages.Brand') :</label>
+                <label for="marca" class="col-form-label text-md-end">@lang('messages.Brand') :</label>
             </div>
             <div>
                 <select class="form-select" name="marca" id="marca">

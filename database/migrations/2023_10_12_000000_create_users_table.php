@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('verification_code')->nullable();
             $table->integer('is_verified')->default(0);
+            $table->string('file')->nullable();
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('vuelo_id')->unique()->nullable();

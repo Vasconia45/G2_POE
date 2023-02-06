@@ -220,7 +220,7 @@ class ControladorAdmin extends Controller
             'nombre' => ['required', 'string'],
             'fecha_cad' => ['required'],
             'precio' => ['required'],
-            'descripcion' => ['required', 'string'],
+            'description' => ['required', 'string'],
             'stock' => ['required'],
             'calorias' => ['required'],
             'peso' => ['required'],

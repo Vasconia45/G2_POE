@@ -104,7 +104,7 @@
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
-                <input id="cantidad_pasajeros" class="@error('cantidad_pasajeros') is-invalid @enderror" type="text"
+                <input id="cantidad_pasajeros" class="@error('cantidad_pasajeros') is-invalid @enderror" type="number"
                     name="cantidad_pasajeros" placeholder="@lang('messages.NumberOfPassengers')"
                     value="{{ old('cantidad_pasajeros') }}">
                 @error('cantidad_pasajeros')

@@ -47,6 +47,8 @@ class UsuarioController extends Controller
         /*$img = $request->file('file')->store('public');
         $url = Storage::url($img);
         $user->imagen = $url;*/
+        $value = $request->file;
+        dd($value);
         return redirect()->route('modificar.cuenta')->with(['usuario' => Auth::user()]);
     }
     public function mostrarUpdate($id){

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('styles')
+<script src="{{ asset('js/userProfileValidation.js')}}"></script>
 <script src="{{ asset('js/password.js')}}"></script>
 <script src="{{ asset('js/userDatos.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('css/userDatos.css') }}">
@@ -16,17 +17,17 @@
                 @if($usuario->imagen == null)
                 <label for="fileupload"><img src="{{ URL('assets/img/user/perfil.jpg')}}" class="img-thumbnail w-100"
                         id="upload-img"></img></label>
-                        <input type="file" name="file" id="fileupload" accept="image/*">
+                <input type="file" name="file" id="fileupload" accept="image/*">
                 @else
                 <label for="fileupload"><img src="{{ URL($usuario->imagen)}}" class="img-thumbnail w-100"
                         id="upload-img"></img></label>
-                        <input type="file" name="file" id="fileupload" accept="image/*">
+                <input type="file" name="file" id="fileupload" accept="image/*">
                 @endif
             </div>
         </div>
         <div class="row">
             <div class="form-floating mt-2">
-                <input type="text" class="@error('nombre') is-invalid @enderror" name="nombre"
+                <input id="nombre" type="text" class="@error('nombre') is-invalid @enderror" name="nombre"
                     placeholder="@lang('messages.Name')" value="{{$usuario->nombre}}">
                 @error('nombre')
                 <span class="invalid-feedback" role="alert">
@@ -35,8 +36,8 @@
                 @enderror
             </div>
             <div class="form-floating mt-2">
-                <input type="text" name="apellido" placeholder="@lang('messages.Last name')"
-                    value="{{$usuario->apellido}}">
+                <input id="apellido" type="text" class="@error('apellido') is-invalid @enderror" name="apellido"
+                    placeholder="@lang('messages.Last name')" value="{{$usuario->apellido}}">
                 @error('apellido')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -70,7 +71,7 @@
             </div>
         </div>
         <div id="pass2Div"></div>
-        <button type="submit" class="btn btn-success mt-2">Actualizar Datos</button>
+        <button id="userValidationBtn" type="submit" class="btn btn-success mt-2">Actualizar Datos</button>
     </form>
 </div>
 @endsection

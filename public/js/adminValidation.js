@@ -61,14 +61,60 @@ function validateMarca(){
 }
 
 function validateProducto(){
-    alert('producto');
+    let name = $('#name').val();
+    let fecha_cad = $('#fecha_cad').val();
+    let precio = $('#precio').val();
+    let descripcion = $('#descripcion').val();
+    let stock = $('#stock').val();
+    let calorias = $('#calorias').val();
+    let peso = $('#peso').val();
+    let hidratos = $('#hidratos').val();
+    let azucares = $('#azucares').val();
+    let proteinas = $('#proteinas').val();
+    let sal = $('#sal').val();
+    let ingredientes = $('#ingredientes').val();
+    let origen = $('#origen').val();
+    let categoria = $();
+    let marca = $();
+    
+
+    if ((!validateName(name)) &&
+    (!validateFecha(fecha_cad)) &&
+    (!validatePrecio(precio)) &&
+    (!validateDesc(descripcion)) &&
+    (!validateStock(stock)) &&
+    (!validateCalorias(calorias)) &&
+    (!validatePeso(peso)) &&
+    (!validateHidratos(hidratos)) &&
+    (!validateAzucares(azucares)) &&
+    (!validateProteinas(proteinas)) &&
+    (!validateSal(sal)) &&
+    (!validateIngredientes(ingredientes)) &&
+    (!validateOrigen(origen)) &&
+    (!validateCategoria(categoria)) &&
+    (!validateMarca(marca))) {
+    }
+    else{
+        e.preventDefault();
+    }
 }
 
 function validateVuelo(){
     let aer_ori = $('#aeropuerto_ori');
+    let aer_des = $('#aeropuerto_des');
+    let cant_pas = $('#cantidad_pasajeros').val();
+    let company = $('#compañia').val();
+    let fecha = $('#fecha').val();
+    let precio = $('#precio').val();
     aer_ori.each(function(){
-        alert($(this).val());
+        let origen = $(this).val();
     });
+    let destino;
+    aer_des.each(function(){
+        destino = $(this).val();
+    });
+    alert(destino);
+
 
     if ((!validateName(name)) &&
         (!validateLastname(lastname)) &&
@@ -126,4 +172,96 @@ function validatePassword2(password2) {
             return false;
         }
     }
+}
+
+function validateFecha(fecha_cad){
+    if(fecha_cad == ""){
+        return true;
+    }
+    return false;
+}
+
+function validatePrecio(precio){
+    if(precio == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateDesc(descripcion){
+    if(descripcion == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateStock(stock){
+    if(stock == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateCalorias(calorias){
+    if(calorias == ""){
+        return true;
+    }
+    return false;
+}
+
+function validatePeso(peso){
+    if(peso == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateHidratos(hidratos){
+    if(hidratos == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateAzucares(azucares){
+    if(azucares == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateProteinas(proteinas){
+    if(proteinas == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateSal(sal){
+    if(sal == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateIngredientes(ingredientes){
+    if(ingredientes == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateOrigen(origen){
+    if(origen == ""){
+        return true;
+    }
+    return false;
+}
+
+function validateCategoria(categoria){
+    
+}
+
+function validateMarca(marca){
+    
 }
