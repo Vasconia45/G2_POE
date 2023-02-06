@@ -72,6 +72,7 @@
             <div>
                 <select class="form-select @error('aeropuerto_ori') is-invalid @enderror" name="aeropuerto_ori"
                     id="aeropuerto_ori">
+                    <option>Seleccione un origen:</option>
                     @foreach ($aeropuertos as $aeropuerto)
                     <option value="{{$aeropuerto->nombre}}">{{$aeropuerto->nombre}}</option>
                     @endforeach
@@ -81,6 +82,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
+                <div id="aer_ori"></div>
             </div>
         </div>
         <div class="row col-7">
@@ -91,6 +93,7 @@
             <div>
                 <select class="form-select @error('aeropuerto_des') is-invalid @enderror" name="aeropuerto_des"
                     id="aeropuerto_des">
+                    <option>Seleccione un destino:</option>
                     @foreach ($aeropuertos as $aeropuerto)
                     <option value="{{$aeropuerto->nombre}}">{{$aeropuerto->nombre}}</option>
                     @endforeach
@@ -100,6 +103,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
+                <div id="aer_des"></div>
             </div>
         </div>
         <div class="row col-8">

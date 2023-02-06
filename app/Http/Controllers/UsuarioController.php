@@ -19,7 +19,15 @@ class UsuarioController extends Controller
     }
     public function update($id,Request $request){
         $user=User::find($id);
-        if($request->password == null){
+        if($request->password == null || $request->file == null){
+            if($request->password == null){
+                dd("pass null and file not null");
+            }
+        }
+        else{
+            dd("pass and file null");
+        }
+        /*if($request->password == null){
             $validation = $request->validate([
                 'nombre' => ['required', 'string'],
                 'apellido' => ['required', 'string'],
@@ -43,11 +51,11 @@ class UsuarioController extends Controller
                 $user->password = Hash::make($request->password);
                 $user->save();
             }
-        }
+        }*/
         /*$img = $request->file('file')->store('public');
         $url = Storage::url($img);
         $user->imagen = $url;*/
-        $value = $request->file;
+        $value = $request->password;
         dd($value);
         return redirect()->route('modificar.cuenta')->with(['usuario' => Auth::user()]);
     }

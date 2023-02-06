@@ -164,6 +164,7 @@
                     @endforeach
                 </select>
             </div>
+            <div id="categoriaMSG"></div>
         </div>
         <div class="row col-4 mt-2">
             <div class="text-start">
@@ -171,11 +172,13 @@
             </div>
             <div>
                 <select class="form-select" name="marca" id="marca">
+                <option>Seleccione una marca:</option>
                     @foreach ($marcas as $marca)
                     <option value="{{$marca->id}}">{{$marca->nombre}}</option>
                     @endforeach
                 </select>
             </div>
+            <div id="marcaMSG"></div>
         </div>
         <button type="submit" class="btn mt-2 adminValidation" name="productoBtn" style="background:#cdb46c;">
             @lang('messages.Create')
