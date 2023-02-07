@@ -7,8 +7,6 @@ use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 class UsuarioController extends Controller
 {
     public function destroy($id)
@@ -19,15 +17,7 @@ class UsuarioController extends Controller
     }
     public function update($id,Request $request){
         $user=User::find($id);
-        if($request->password == null || $request->file == null){
-            if($request->password == null){
-                dd("pass null and file not null");
-            }
-        }
-        else{
-            dd("pass and file null");
-        }
-        /*if($request->password == null){
+        if($request->password == null && $request->file == null){
             $validation = $request->validate([
                 'nombre' => ['required', 'string'],
                 'apellido' => ['required', 'string'],
@@ -38,27 +28,58 @@ class UsuarioController extends Controller
                 $user->save();
             }
         }
-        else{
+        else if($request->password != null && $request->file != null){
             $validation = $request->validate([
                 'nombre' => ['required', 'string'],
                 'apellido' => ['required', 'string'],
                 'password' => ['required', 'string'],
                 'password2' => ['required', 'string', 'same:password'],
+                'file' => ['required', 'image', 'max:2048','mimes:png,jpg,jpeg'],
             ]);
             if($validation){
+                $image = $request->file('file');
+                $image->move(public_path("storage/profile/" . $id), $image->getClientOriginalName());
                 $user->nombre = $request->nombre;
                 $user->apellido = $request->apellido;
                 $user->password = Hash::make($request->password);
+                $user->file = $image->getClientOriginalName();
                 $user->save();
             }
-        }*/
-        /*$img = $request->file('file')->store('public');
-        $url = Storage::url($img);
-        $user->imagen = $url;*/
-        $value = $request->password;
-        dd($value);
+        }
+        else{
+            if($request->password == null && $request->file != null){
+                $validation = $request->validate([
+                    'nombre' => ['required', 'string'],
+                    'apellido' => ['required', 'string'],
+                    'file' => ['required', 'image', 'max:2048', 'mimes:png,jpg,jpeg'],
+                ]);
+                if($validation){
+                    $image = $request->file('file');
+                    $image->move(public_path("storage/profile/" . $id), $image->getClientOriginalName());
+                    $user->nombre = $request->nombre;
+                    $user->apellido = $request->apellido;
+                    $user->file = $image->getClientOriginalName();
+                    $user->save();
+                }
+            }
+            else{
+                $validation = $request->validate([
+                    'nombre' => ['required', 'string'],
+                    'apellido' => ['required', 'string'],
+                    'password' => ['required', 'string'],
+                    'password2' => ['required', 'string', 'same:password'],
+                ]);
+                if($validation){
+                    $user->nombre = $request->nombre;
+                    $user->apellido = $request->apellido;
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+                }
+            }
+        }
         return redirect()->route('modificar.cuenta')->with(['usuario' => Auth::user()]);
     }
+    
     public function mostrarUpdate($id){
         $usuario = User::find($id);
         return view("vistas_usuario.actualizar_datos_usuario")->with(['usuario' => $usuario]);

@@ -14,12 +14,12 @@
         @method('PUT')
         <div class="d-flex justify-content-center mt-4">
             <div class="text-center col-lg-9 col-10 profile-images">
-                @if($usuario->imagen == null)
+                @if($usuario->file == null)
                 <label for="fileupload"><img src="{{ URL('assets/img/user/perfil.jpg')}}" class="img-thumbnail w-100"
                         id="upload-img"></img></label>
                 <input type="file" name="file" id="fileupload" accept="image/*">
                 @else
-                <label for="fileupload"><img src="{{ URL($usuario->imagen)}}" class="img-thumbnail w-100"
+                <label for="fileupload"><img src="{{ URL('storage/profile/' . $usuario->id . '/' . $usuario->file)}}" class="img-thumbnail w-100"
                         id="upload-img"></img></label>
                 <input type="file" name="file" id="fileupload" accept="image/*">
                 @endif

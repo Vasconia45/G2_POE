@@ -5,26 +5,31 @@ function inicio() {
     button.on('click', validation);
 }
 
-function validation() {
+function validation(e) {
     let name = $(this).attr('name');
     if (name == 'userBtn') {
-        validateUser();
+        alert('user');
+        validateUser(e);
     }
     else if (name == 'categoriaBtn') {
-        validateCategoria();
+        alert('categoria');
+        validateCategoria(e);
     }
     else if (name == 'marcaBtn') {
-        validateMarca();
+        alert('msrca');
+        validateMarca(e);
     }
     else if (name == 'productoBtn') {
-        validateProducto();
+        alert('producto');
+        validateProducto(e);
     }
     else if (name == 'vueloBtn') {
-        validateVuelo();
+        alert('vuelo');
+        validateVuelo(e);
     }
 }
 
-function validateUser() {
+function validateUser(e) {
     let name = $('#nombre').val();
     let lastname = $('#apellido').val();
     let email = $('#email').val();
@@ -42,7 +47,8 @@ function validateUser() {
     }
 }
 
-function validateCategoria() {
+function validateCategoria(e) {
+    alert('sda');
     let name = $('#nombre').val().split(' ').join('');
     if ((!validateName(name))) {
     }
@@ -51,7 +57,7 @@ function validateCategoria() {
     }
 }
 
-function validateMarca() {
+function validateMarca(e) {
     let name = $('#nombre').val().split(' ').join('');
     if ((!validateName(name))) {
     }
@@ -60,7 +66,7 @@ function validateMarca() {
     }
 }
 
-function validateProducto() {
+function validateProducto(e) {
     let name = $('#name').val();
     let fecha_cad = $('#fecha_cad').val();
     let precio = $('#precio').val();
@@ -99,7 +105,7 @@ function validateProducto() {
     }
 }
 
-function validateVuelo() {
+function validateVuelo(e) {
     let aer_ori = $('#aeropuerto_ori');
     let aer_des = $('#aeropuerto_des');
     let cant_pas = $('#cantidad_pasajeros').val();
@@ -121,56 +127,91 @@ function validateVuelo() {
 
 
 function validateName(name) {
-    if (name == "") {
-        return true;
-    }
-    return false;
-}
-
-function validateLastname(lastname) {
-    if (lastname == "") {
-        return true;
-    }
-    return false;
-}
-let div = $('#categoriaMSG');
+    let div = $('#nomDiv');
     div.html("");
-    if(cat.indexOf('Seleccione', 0) == 0){
+    if (name == "") {
         let span = $("<span></span>");
-        let strong = $("<strong>Choose a category.</strong>");
+        let strong = $("<strong>The name field is required.</strong>");
         strong.css("color", "red");
         span.append(strong);
         div.html(span);
         return true;
     }
     return false;
-function validateEmail(email) {
-    let last = email.split('.').slice(-1);
-    if (email == "") {
+}
+
+function validateLastname(lastname) {
+    let div = $('#appDiv');
+    div.html("");
+    if (lastname == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The lastname field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
         return true;
     }
-    else if (email.indexOf('@', 0) == -1 || last != 'com') {
+    return false;
+}
+
+function validateEmail(email) {
+    let div = $('#emailDiv');
+    div.html("");
+    let last = email.split('.').slice(-1);
+    if (email == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The email file is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    else if(email.indexOf('@', 0) == -1 || last != 'com'){
+        let span = $("<span></span>");
+        let strong = $("<strong>You need a valid email address.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
         return true;
     }
     return false;
 }
 
 function validatePassword(password) {
+    let div = $('#pass1Div');
+    div.html("");
     if (password == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The password field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
         return true;
     }
     return false;
 }
 
 function validatePassword2(password2) {
+    let div = $('#pass2Div');
     let password = $('#registerPass').val();
+    div.html("");
     if (password2 == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The password2 field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
         return true;
     }
     else {
-        if (password2 != password) {
+        if(password2 != password){
+            let span = $("<span></span>");
+            let strong = $("<strong>The password2 and the password are not equal.</strong>");
+            strong.css("color", "red");
+            span.append(strong);
+            div.html(span);
             return true;
-        } else {
+        }else{
             return false;
         }
     }
@@ -297,14 +338,14 @@ function validateMarca(marca) {
 }
 
 
-function validateAerOri(aer_ori) {
+function validateAerOri(aer_ori) { 
     let origen;
     aer_ori.each(function () {
         origen = $(this).val();
     });
     let div = $('#aer_ori');
     div.html("");
-    if (origen.indexOf('Seleccione', 0) == 0) {
+    if (origen.indexOf('Seleccione') != -1) {
         let span = $("<span></span>");
         let strong = $("<strong>Choose an departure airport.</strong>");
         strong.css("color", "red");

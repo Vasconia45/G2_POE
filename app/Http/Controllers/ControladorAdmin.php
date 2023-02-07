@@ -12,8 +12,9 @@ use App\Models\Pedido;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Aeropuerto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
-use Illuminate\Support\Facades\Redirect;
 
 class ControladorAdmin extends Controller
 {
@@ -204,7 +205,6 @@ class ControladorAdmin extends Controller
                 $user->is_verified=1;
                 $rol=Role::find(2);
                 $user->role()->associate($rol)->save();
-                $user->save();
                 $pedido=new Pedido();
                 $pedido->total=0;
                 $pedido->usuario()->associate($user)->save();
@@ -349,6 +349,13 @@ class ControladorAdmin extends Controller
     }
 
     public function borrar_del_todo($id){
+        $file = 'public/profile/' . $id;
+        if(Storage::exists($file)){
+            Storage::deleteDirectory($file);
+        }
+        else{
+            dd('error');
+        }
         $usuario=User::onlyTrashed()->find($id);
         $usuario->forceDelete();
         return redirect()->route('admin_lista_usuarios_mostrar_recuperar');

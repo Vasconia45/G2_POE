@@ -25,6 +25,7 @@ class User extends Authenticatable
         'apellido',
         'email',
         'password',
+        'file',
         'role_id',
         'vuelo_id'
     ];

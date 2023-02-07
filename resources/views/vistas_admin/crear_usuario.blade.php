@@ -20,6 +20,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="nomDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -31,6 +32,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="appDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -42,12 +44,12 @@
                 </span>
                 @enderror
             </div>
+            <div id="emailDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
                 <input id="registerPass" class="@error('password') is-invalid @enderror" type="password" name="password"
                     placeholder="@lang('messages.Password')">
-                <div id="pass1Div"></div>
                 <div>
                     <div id="progress-bar"></div>
                 </div>
@@ -59,6 +61,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="pass1Div"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
