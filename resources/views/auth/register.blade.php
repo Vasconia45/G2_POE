@@ -51,6 +51,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                            <div id="LogEmDiv"></div>
                         </div>
                         <div class="mt-2 position-relative">
                             <input type="password" class="reset @error('password') is-invalid @enderror" name="password"
@@ -62,6 +63,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                            <div id="LogPassDiv"></div>
                         </div>
                     </div>
                     <a href="{{ route('password.request') }}">@lang('messages.ForgotPassword')</a>

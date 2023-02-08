@@ -34,6 +34,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
+                <div id="nomDiv"></div>
             </div>
             <div class="form-floating mt-2">
                 <input id="apellido" type="text" class="@error('apellido') is-invalid @enderror" name="apellido"
@@ -43,6 +44,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
+                <div id="appDiv"></div>
             </div>
             <div class="form-floating mt-2 position-relative">
                 <input type="password" class="@error('password') is-invalid @enderror" name="password"

@@ -22,7 +22,52 @@ function search2() {
 }
 
 function validateLogin(e){
+    let email = $('#loginEmail').val();
+    let password = $('#loginPassword').val();
 
+    if((!validateLogEmail(email)) &&
+        (!validateLogPassword(password))){
+    }
+    else{
+        e.preventDefault();
+    }
+}
+
+function validateLogEmail(email){
+    let div = $('#LogEmDiv');
+    div.html("");
+    let last = email.split('.').slice(-1);
+    if (email == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The email file is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    else if(email.indexOf('@', 0) == -1 || last != 'com'){
+        let span = $("<span></span>");
+        let strong = $("<strong>You need a valid email address.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    return false;
+}
+
+function validateLogPassword(password){
+    let div = $('#LogPassDiv');
+    div.html("");
+    if (password == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The password field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    return false;
 }
 
 function validateRegister(e) {

@@ -6,7 +6,7 @@ function inicio(){
 }
 
 
-function validation(){
+function validation(e){
     let name = $('#nombre').val();
     let lastname = $('#apellido').val();
     let password2 = $('#registerPass2').val();
@@ -21,15 +21,28 @@ function validation(){
 }
 
 function validateName(name){
-    if(name == ""){
+    let div = $('#nomDiv');
+    div.html("");
+    if (name == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The name field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
         return true;
     }
     return false;
 }
 
 function validateLastname(lastname){
-    if(lastname == ""){
-        alert("lastname");
+    let div = $('#appDiv');
+    div.html("");
+    if (lastname == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The lastname field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
         return true;
     }
     return false;
@@ -37,8 +50,26 @@ function validateLastname(lastname){
 
 function validatePassword2(password2){
     let password = $('#registerPass').val();
-    if(password2 != password){
+    let div = $('#pass2Div');
+    div.html("");
+    if (password != "" && password2 == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The password2 field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
         return true;
     }
-    return false;
+    else {
+        if(password2 != password){
+            let span = $("<span></span>");
+            let strong = $("<strong>The password2 and the password are not equal.</strong>");
+            strong.css("color", "red");
+            span.append(strong);
+            div.html(span);
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
