@@ -3,9 +3,11 @@ $(document).ready(inicio);
 function inicio() {
     let signInButton = $('#signIn');
     let signUpButton = $('#signUp');
+    let loginBtn = $('#loginBtn');
     let registerBtn = $('#regisBtn');
     signUpButton.on('click', search);
     signInButton.on('click', search2);
+    loginBtn.on('click', validateLogin);
     registerBtn.on('click', validateRegister);
 }
 
@@ -17,6 +19,10 @@ function search() {
 function search2() {
     let main = $('#main');
     main.removeClass("right-panel-active");
+}
+
+function validateLogin(e){
+
 }
 
 function validateRegister(e) {

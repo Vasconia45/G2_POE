@@ -117,6 +117,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="cantDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -128,6 +129,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="compDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -139,6 +141,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="fechaDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -150,6 +153,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="preDiv"></div>
         </div>
         <button type="submit" class="btn mt-2 adminValidation" name="vueloBtn" style="background:#cdb46c;">
             @lang('messages.Create')

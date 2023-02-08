@@ -19,6 +19,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="nomDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -30,6 +31,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="fechaDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -41,6 +43,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="precioDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -52,6 +55,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="desDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -63,6 +67,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="stoDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -74,6 +79,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="calDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -85,6 +91,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="pesDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -96,6 +103,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="hidDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -107,6 +115,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="azuDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -118,6 +127,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="proDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -129,6 +139,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="salDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -140,6 +151,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="ingDiv"></div>
         </div>
         <div class="row col-8">
             <div class="form-floating mt-2">
@@ -151,6 +163,7 @@
                 </span>
                 @enderror
             </div>
+            <div id="oriDiv"></div>
         </div>
         <div class="row col-4 mt-2">
             <div class="text-start">
@@ -164,8 +177,8 @@
                     @endforeach
                 </select>
             </div>
-            <div id="categoriaMSG"></div>
         </div>
+        <div id="categoriaMSG"></div>
         <div class="row col-4 mt-2">
             <div class="text-start">
                 <label for="marca" class="col-form-label text-md-end">@lang('messages.Brand') :</label>
@@ -178,8 +191,8 @@
                     @endforeach
                 </select>
             </div>
-            <div id="marcaMSG"></div>
         </div>
+        <div id="marcaMSG"></div>
         <button type="submit" class="btn mt-2 adminValidation" name="productoBtn" style="background:#cdb46c;">
             @lang('messages.Create')
         </button>
