@@ -82,12 +82,14 @@
                 <label for="role" class="col-form-label text-md-end">@lang('messages.Role') :</label>
             </div>
             <div>
-                <select class="form-select" name="rol" id="rol">                  
+                <select class="form-select" name="rol" id="rol">
+                    <option>Seleccione un Rol:</option>                  
                     @foreach ($roles as $rol)
                     <option value="{{$rol->id}}">{{$rol->tipo}}</option>
                     @endforeach                 
                 </select>
             </div>
+            <div id="rolDiv"></div>
         </div>
         @endif
         <button type="submit" class="btn mt-2 adminValidation" name="userBtn" style="background:#cdb46c;">

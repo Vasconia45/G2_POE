@@ -20,6 +20,7 @@
                 @enderror
             </div>
         </div>
+        <div id="catDiv"></div>
         <button type="submit" class="btn mt-2 adminValidation" name="categoriaBtn" style="background:#cdb46c;">
             @lang('messages.Create')
         </button>

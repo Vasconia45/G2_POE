@@ -19,6 +19,7 @@
                 @enderror
             </div>
         </div>
+        <div id="marDiv"></div>
         <button type="submit" class="btn mt-2 adminValidation" name="marcaBtn" style="background:#cdb46c;">
             @lang('messages.Create')
         </button>

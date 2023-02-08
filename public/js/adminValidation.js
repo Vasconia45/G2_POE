@@ -8,15 +8,12 @@ function inicio() {
 function validation(e) {
     let name = $(this).attr('name');
     if (name == 'userBtn') {
-        alert('user');
         validateUser(e);
     }
     else if (name == 'categoriaBtn') {
-        alert('categoria');
         validateCategoria(e);
     }
     else if (name == 'marcaBtn') {
-        alert('msrca');
         validateMarca(e);
     }
     else if (name == 'productoBtn') {
@@ -35,12 +32,14 @@ function validateUser(e) {
     let email = $('#email').val();
     let password = $('#registerPass').val();
     let password2 = $('#registerPass2').val();
+    let rol = $('#rol').val().split(' ').join('');
 
     if ((!validateName(name)) &&
         (!validateLastname(lastname)) &&
         (!validateEmail(email)) &&
         (!validatePassword(password)) &&
-        (!validatePassword2(password2))) {
+        (!validatePassword2(password2)) &&
+        (!validateRol(rol))) {
     }
     else {
         e.preventDefault();
@@ -48,9 +47,8 @@ function validateUser(e) {
 }
 
 function validateCategoria(e) {
-    alert('sda');
     let name = $('#nombre').val().split(' ').join('');
-    if ((!validateName(name))) {
+    if ((!validateCatName(name))) {
     }
     else {
         e.preventDefault();
@@ -59,7 +57,7 @@ function validateCategoria(e) {
 
 function validateMarca(e) {
     let name = $('#nombre').val().split(' ').join('');
-    if ((!validateName(name))) {
+    if ((!validateMarName(name))) {
     }
     else {
         e.preventDefault();
@@ -84,9 +82,9 @@ function validateProducto(e) {
     let marca = $('#marca');
 
 
-    if ((!validateName(name)) &&
-        (!validateFecha(fecha_cad)) &&
-        (!validatePrecio(precio)) &&
+    if ((!validateProName(name)) &&
+        (!validateProFecha(fecha_cad)) &&
+        (!validateProPrecio(precio)) &&
         (!validateDesc(descripcion)) &&
         (!validateStock(stock)) &&
         (!validateCalorias(calorias)) &&
@@ -114,18 +112,18 @@ function validateVuelo(e) {
     let precio = $('#precio').val();
 
     if ((!validateAerOri(aer_ori)) &&
-        (!validateAerDes(aer_des)) &&
+        (!validateAerDes(aer_des, aer_ori)) &&
         (!validatePasajeros(cant_pas)) &&
         (!validateCompany(company)) &&
-        (!validateFecha(fecha)) &&
-        (!validatePrecio(precio))) {
+        (!validateVueFecha(fecha)) &&
+        (!validateVuePrecio(precio))) {
     }
     else {
         e.preventDefault();
     }
 }
 
-
+//Validation of User name
 function validateName(name) {
     let div = $('#nomDiv');
     div.html("");
@@ -140,6 +138,7 @@ function validateName(name) {
     return false;
 }
 
+//Validation of User apellido
 function validateLastname(lastname) {
     let div = $('#appDiv');
     div.html("");
@@ -154,6 +153,7 @@ function validateLastname(lastname) {
     return false;
 }
 
+//Validation of User email
 function validateEmail(email) {
     let div = $('#emailDiv');
     div.html("");
@@ -177,6 +177,7 @@ function validateEmail(email) {
     return false;
 }
 
+//Validation of User first password
 function validatePassword(password) {
     let div = $('#pass1Div');
     div.html("");
@@ -191,6 +192,7 @@ function validatePassword(password) {
     return false;
 }
 
+//Validation of User confirm password
 function validatePassword2(password2) {
     let div = $('#pass2Div');
     let password = $('#registerPass').val();
@@ -217,6 +219,24 @@ function validatePassword2(password2) {
     }
 }
 
+//Validation of User rol
+function validateRol(roles){
+    let div = $('#rolDiv');
+    div.html("");
+    if (roles.indexOf('Seleccione') == 0) {
+        let span = $("<span></span>");
+        let strong = $("<strong>Choose a rol.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    return false;
+}
+
+function validateProName(name){
+
+}
 function validateFecha(fecha_cad) {
     if (fecha_cad == "") {
         return true;
@@ -301,7 +321,8 @@ function validateOrigen(origen) {
     return false;
 }
 
-function validateCategoria(categoria) {
+//Validation of Vuelo Categoria
+/*function validateCategoria(categoria) {
     let cat;
     categoria.each(function () {
         cat = $(this).val();
@@ -317,9 +338,10 @@ function validateCategoria(categoria) {
         }
         return false;
     });
-}
+}*/
 
-function validateMarca(marca) {
+//Validation of Vuelo Marca
+/*function validateMarca(marca) {
     let marc;
     marca.each(function () {
         marc = $(this).val();
@@ -335,9 +357,9 @@ function validateMarca(marca) {
         return true;
     }
     return false;
-}
+}*/
 
-
+//Validation of Vuelo origen
 function validateAerOri(aer_ori) { 
     let origen;
     aer_ori.each(function () {
@@ -356,13 +378,19 @@ function validateAerOri(aer_ori) {
     return false;
 }
 
-function validateAerDes(aer_des) {
+//Validation of Vuelo destino
+function validateAerDes(aer_des, aer_ori) {
+    let origen;
+    aer_ori.each(function () {
+        origen = $(this).val();
+    });
     let destino;
     aer_des.each(function () {
         destino = $(this).val();
     });
     let div = $('#aer_des');
     div.html("");
+    alert(destino);
     if (destino.indexOf('Seleccione', 0) == 0) {
         let span = $("<span></span>");
         let strong = $("<strong>Choose a destination airport.</strong>");
@@ -371,9 +399,18 @@ function validateAerDes(aer_des) {
         div.html(span);
         return true;
     }
+    else if(destino == origen){
+        let span = $("<span></span>");
+        let strong = $("<strong>Choose a another destination.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
     return false;
 }
 
+//Validation of Vuelo pasajeros
 function validatePasajeros(cant) {
     if (cant == "") {
         return true;
@@ -381,8 +418,39 @@ function validatePasajeros(cant) {
     return false;
 }
 
+//Validation of Vuelo company
 function validateCompany(comp) {
     if (comp == "") {
+        return true;
+    }
+    return false;
+}
+
+//Validation of Categoria Name
+function validateCatName(name){
+    let div = $('#catDiv');
+    div.html("");
+    if (name == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The name field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
+        return true;
+    }
+    return false;
+}
+
+//Validation of Marca Name
+function validateMarName(name){
+    let div = $('#marDiv');
+    div.html("");
+    if (name == "") {
+        let span = $("<span></span>");
+        let strong = $("<strong>The name field is required.</strong>");
+        strong.css("color", "red");
+        span.append(strong);
+        div.html(span);
         return true;
     }
     return false;
