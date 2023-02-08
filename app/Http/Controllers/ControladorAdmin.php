@@ -353,9 +353,6 @@ class ControladorAdmin extends Controller
         if(Storage::exists($file)){
             Storage::deleteDirectory($file);
         }
-        else{
-            dd('error');
-        }
         $usuario=User::onlyTrashed()->find($id);
         $usuario->forceDelete();
         return redirect()->route('admin_lista_usuarios_mostrar_recuperar');

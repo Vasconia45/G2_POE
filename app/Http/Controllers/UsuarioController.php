@@ -7,6 +7,7 @@ use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 class UsuarioController extends Controller
 {
     public function destroy($id)
@@ -37,6 +38,10 @@ class UsuarioController extends Controller
                 'file' => ['required', 'image', 'max:2048','mimes:png,jpg,jpeg'],
             ]);
             if($validation){
+                $file = 'public/profile/' . $id . '/' . $user->file;
+                if(Storage::exists($file)){
+                    Storage::delete($file);
+                }
                 $image = $request->file('file');
                 $image->move(public_path("storage/profile/" . $id), $image->getClientOriginalName());
                 $user->nombre = $request->nombre;
@@ -54,6 +59,10 @@ class UsuarioController extends Controller
                     'file' => ['required', 'image', 'max:2048', 'mimes:png,jpg,jpeg'],
                 ]);
                 if($validation){
+                    $file = 'public/profile/' . $id . '/' . $user->file;
+                    if(Storage::exists($file)){
+                        Storage::delete($file);
+                    }
                     $image = $request->file('file');
                     $image->move(public_path("storage/profile/" . $id), $image->getClientOriginalName());
                     $user->nombre = $request->nombre;
