@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
+@section('styles')
+<script src="{{ asset('js/radioBtn.js')}}"></script>
+@endsection
+
 @section('content')
-    <script type="text/javascript">
-        function unselect() {
-            document.querySelectorAll('[name=categoria]').forEach((x) => x.checked = false);
-            document.querySelectorAll('[name=marca]').forEach((x) => x.checked = false);
-        }
-    </script>
     <div class="p-5">
         <h1 style="text-align: center">Lista productos</h1>
         <div class="row">
@@ -17,7 +15,8 @@
                 <div>
                     <form method="get" action="{{ route('buscar.productos') }}">
                         <input type="text" name="texto" class="col-2">
-                        <div>
+                        <div id="div"></div>
+                        <!--<div>
                             @foreach ($categorias as $categoria)
                                 <input type="radio" class="m-2" value="{{ $categoria->id }}" name="categoria"
                                     id="{{ $categoria->id }}"><label for="{{ $categoria->id }}">{{ $categoria->nombre }}</label>
@@ -28,16 +27,12 @@
                                 <input type="radio" class="m-2" value="{{ $marca->id }}" name="marca"
                                     id="{{ $marca->id . 'm' }}"><label for="{{ $marca->id . 'm' }}">{{ $marca->nombre }}</label>
                             @endforeach
-                        </div>
+                        </div>-->
                         <div class="mb-2 mt-2"style="text-align: center;">
                             <button type="submit" class="btn"
                             style="background-color: #CCB26B;">Buscar</button>
                         </div>
                     </form>
-                    <div style="text-align: center">
-                        <button id="unselect" class="btn"
-                        style="background-color: #CCB26B;"onclick="unselect()">Deseleccionar</button>
-                    </div>
                 </div>
             </div>
         </div>
