@@ -238,7 +238,7 @@ class ControladorAdmin extends Controller
             $producto->nombre = $request->nombre;
             $producto->fecha_cad = $request->fecha_cad;
             $producto->precio = $request->precio;
-            $producto->descripcion = $request->descripcion;
+            $producto->descripcion = $request->description;
             $producto->stock = $request->stock;
             $producto->calorias = $request->calorias;
             $producto->peso = $request->peso;
